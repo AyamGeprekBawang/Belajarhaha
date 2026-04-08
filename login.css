@@ -1,0 +1,84 @@
+.blur{
+  border: 3px solid rgba(255,255,255,0.2);
+  position: fixed;       
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(199, 148, 148, 0.2);
+  backdrop-filter: blur(10px);
+  width: 300px;
+  height: 400px;
+  padding: 24px;
+  border-radius: 6px;
+
+}
+
+footer {
+ position: fixed;
+ top: 90%;
+ left: 15%;
+ color: white;
+
+}
+
+.login {
+  position:fixed
+  width: 250px;
+  padding: 10px;
+  margin: 5px 0 15px 0;
+  border-radius: 10px;
+  background-color: rgba(255,255,255,0.2);
+  backdrop-filter: blur(11px);
+  font-size: 16px;
+  transition: 0.3s;
+
+}
+
+.btn {
+  position: fixed;
+  top: 60%;
+  left: 15%;
+  width: 250px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+
+}
+
+.don{
+  position: fixed;
+  top: 70%;
+  left: 20%;
+  color: aliceblue;
+
+}
+
+.reg {
+  position: fixed;
+  top: 73.3%;
+  left: 65%;
+  color: rgb(255, 166, 0);
+}
+
+.sdw{
+  text-shadow: 2px 2px 5px black;
+
+}
+
+.bck{
+  color: chocolate;
+  text-align: center;
+  font-size: 17px;
+  position: fixed;
+  top: 83%;
+  left: 3%;
+  background-color: burlywood;
+  width: 80px;
+  height: 30px;
+  padding: 10px;
+  border-radius: 10px;
+
+}

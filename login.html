@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css" type="text/css">
+    <style>
+       body {
+       text-align: center;
+       margin: 0;
+       min-height:100vh;
+       background-image: url("https://images.wallpapersden.com/image/download/frieren-hd-frieren-beyond-journey-s-end_bmdoamyUmZqaraWkpJRpamVlrWdsa2Y.jpg");
+       background-size: cover;
+       background-repeat: no-repeat;
+       background-position: center;
+       }
+
+       section {
+        text-align: center;
+         } 
+
+       footer {
+        text-align: center;
+         }
+
+     </style>
+ </head>
+     <body> 
+      <a href="https://www.instagram.com/hydrobluzzz/" class="bck">Support me</a>
+      <img src="https://www.themoviedb.org/t/p/original/yo285bWe7O3YYwhjXazqL7OPUsq.png" width="400">
+      <footer>Lorem ipsum dolor sit amet consectetur adipiscing elit. Consectetur adipiscing elit quisque faucibus ex sapien vitae. Ex sapien vitae pellentesque sem placerat in id.
+      </footer>
+      <section class="blur"> 
+       <h1 style="color: aliceblue; font-size: 30px;  font-family: 'Poppins', sans-serif;">Login</h1>
+       <form onsubmit="return login()">
+  <input type="text" id="username" class="login" placeholder="Username"><br>
+  <input type="password" id="password" class="login" placeholder="Password"><br>
+  <button type="submit" class="btn">Login</button>
+</form>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+function login() {
+  let userInput = document.getElementById("username").value;
+  let passInput = document.getElementById("password").value;
+
+ const users = [
+  {
+    username: "a",
+    password: "1",
+    name: "Bluzzz",
+    id: "461117788",
+    icon: "https://i.pinimg.com/originals/ec/03/db/ec03dbdeb40d70a2d11a428a15a3ef2e.jpg",
+    profile: "https://i.pinimg.com/originals/ec/03/db/ec03dbdeb40d70a2d11a428a15a3ef2e.jpg",
+    img: "https://i.pinimg.com/736x/63/92/24/639224f094deff2ebf9cd261fba24004.jpg"
+  },
+  {
+    username: "b",
+    password: "2",
+    name: "NeBluzzz",
+    id: "28030609",
+    icon: "https://i.pinimg.com/736x/ac/dd/f8/acddf8971f159f02893271d97d224486.jpg",
+    profile: "https://i.pinimg.com/736x/ac/dd/f8/acddf8971f159f02893271d97d224486.jpg",
+    img: "https://i.pinimg.com/736x/a0/8a/4c/a08a4c608c44c447aba52c152f80abd0.jpg"
+  }
+];
+  const user = users.find(u => 
+    u.username === userInput && u.password === passInput
+  );
+
+  if (user) {
+    localStorage.setItem("name", user.name);
+    localStorage.setItem("id", user.id);
+    localStorage.setItem("username", user.username);
+
+    localStorage.setItem("icon", user.icon);
+  localStorage.setItem("profile", user.profile);
+  localStorage.setItem("img", user.img);
+
+    window.location.href = "home.html";
+  } else {
+    alert("Salah!");
+  }
+
+  return false;
+}
+</script>
+     </section>
+    </body>
+</html>

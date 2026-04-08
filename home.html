@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="home.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+main {
+  justify-content: center;
+    height: 100%;
+    background: url(https://img.freepik.com/premium-photo/magic-house-forest-summer-safe-nature-day-concept_564714-20740.jpg);
+    background-size: cover;
+    background-position: center;
+
+
+}
+
+a {
+    text-decoration: none;
+    color: azure;
+}
+
+.top {
+  position: fixed;
+  top: 0;
+  left: 0;  
+  transform: none;
+  width: 100%;
+  height: 80px;
+  background: rgba(199, 148, 148, 1);
+
+}
+
+.navbar {
+    position: fixed;
+    left:0;
+    top: 0;
+    width: 100%;
+    padding: 25px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index:  100;
+}
+
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+    height: 100vh;
+    padding: 50px 100px 0;
+    min-height: 100hv;
+}
+
+.icons {
+    position: relative;
+    top: -15px;
+    left: -80px;
+    width: 60px;
+    height: 60px;
+    background: none;
+    border: none;
+    border-radius: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+
+}
+
+.shift-right {
+  transform: translateX(75px);
+  border-radius: 50%; 
+  border: 3px solid gold;
+}
+
+.icons img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+  transition: inherit;
+}
+
+#sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background: #333;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  transition: 0.3s;
+  padding-top: 60px;
+}
+
+#sidebar a {
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  color: white;
+  padding: 10px 20px;
+  margin: 5px 10px;
+  text-decoration: none;
+  transition: all 0.5s ease;
+  cursor: default;
+}
+
+#sidebar a i {
+  margin-right: 10px;
+  transition: color 0.3s;
+   position: relative;
+  z-index: 1;
+}
+
+#sidebar a span {
+  position: relative;
+  z-index: 1;
+}
+
+
+
+#sidebar a:hover {
+  background: white;
+  color: black;
+
+}
+
+#sidebar a:hover i {
+  color: black;
+}
+
+#sidebar a:hover i {
+  color: black;
+}
+
+
+#sidebar .logout {
+  margin-top: auto;
+
+}
+
+#sidebar a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+  z-index: 0;
+}
+
+#sidebar a:hover::before {
+  transform: translateX(0);
+
+}
+
+#sidebar a:hover span {
+  color: black;
+}
+
+#sidebar.active {
+  left: 0;
+}
+
+.sidebar-title {
+  color: white;
+  text-align: center;
+  padding: 15px 20px;
+  margin: 0 0 10px 0;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* optional: garis bawah */
+}
+
+/* Dark mode*/
+body.dark #sidebar {
+  background: #1e1e1e;
+}
+
+body.dark #sidebar a {
+  color: white;
+}
+
+body.dark #sidebar a:hover {
+  background: white;
+  color: black;
+}
+
+/* Light mode*/
+body.light #sidebar {
+  background: #f0f0f0;
+}
+
+body.light #sidebar a {
+  color: black;
+}
+
+body.light #sidebar a:hover {
+  background: black;
+  color:white;
+}
+
+body.light #sidebar a::before {
+  background: black;
+}
+
+body.dark #sidebar a::before {
+  background: white;
+}
+
+body.light .sidebar-title {
+  color: black;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+body.dark .sidebar-title {
+  color: white;
+}
+
+body.light #sidebar a:hover span {
+  color: white;
+}
+
+body.light #sidebar a:hover i {
+  color: white;
+}
+
+body.light #sidebar a:hover i {
+  color: white;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  justify-content: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: chocolate;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  width: 300px;
+  height: 350px;
+  text-align: center;
+  z-index: 100;
+}
+
+#closeModalBtn {
+  position: fixed;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  top: 5px;
+  right: 5px;
+  font-size: 24px;
+  background-color: rgb(27, 26, 26);
+  border-radius: 6px;
+  cursor: default;
+  transition: background 0.2s;
+}
+
+#closeModalBtn:hover {
+  background: #f00;
+}
+
+.card{
+    background-color: rgb(221, 171, 106);
+    position: absolute;
+    top: 20px;
+    left: 15px;
+    width: 270px;
+    height: 310px;
+    border-radius: 12px;
+}
+
+.card2{
+    background-color: rgb(218, 161, 87);
+    position: absolute;
+    top: 150px;
+    left: 10px;
+    width: 250px;
+    height: 150px;
+    border-radius: 12px;
+}
+
+
+.profile-pic img {
+  position: relative;
+  top: 10px;
+  right: 85px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid;
+  border-color: gold ;
+
+}
+
+.img img {
+ position: fixed;
+ top: 30px;
+ right: 30px;
+ border: 3px solid;
+ border-color: rgba(255, 217, 0, 0.74);
+ border-radius: 6px;
+
+}
+
+.id {
+  color: #fcecd2;
+  font-size: 10px;
+  position: fixed;
+  top: 114px;
+  left: 25px;
+}
+
+.copy-btn {
+  position: fixed;
+  top: 112px;
+  left: 100px;
+  font-size: 12px;
+  cursor: pointer;
+  background-color: rgb(221, 171, 106);
+  border: none;
+  transition: background: 0.2s;
+
+}
+
+#notif {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: black;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 8px;
+  opacity: 0;
+  transition: 0.3s;
+
+}
+
+#notif.show {
+  opacity: 1;
+}
+
+.copy-btn:hover {
+  background: #ddd;
+}
+
+
+#customInputWrapper {
+  background: rgba(255, 255, 225, 0.2);         
+  border: 2px solid #333;    
+  border-radius: 10px;       
+  padding: 20px;             
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  backdrop-filter: blur(10px);
+}
+
+#customInputWrapper input {
+  padding: 5px 10px;
+  margin-right: 10px;
+}
+#customInputWrapper button {
+  padding: 5px 10px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.profile-info {
+  position: absolute;
+  top: 110px;
+  left: 10px;
+  font-size: 18px;
+  background-color:grey;
+  display: flex ;
+  align-items: center;
+  width: auto;
+  color: #fff;
+  border: 2px solid;
+  border-color: #333;
+}
+
+.profile-info input {
+  color: white;
+  width: 100px;
+  font-size: 16px;
+  display: none; 
+  background: rgba(0,0,0, .1);
+
+}
+
+.profile-info button {
+  left: 55px;
+  margin-left: 20px;
+  padding: 5px 5px;
+  border: none;
+  background: #333;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.profile-info button:hover {
+  background: #555;
+}
+
+.box {
+  position: fixed;
+  top: 190px;
+  right: 50px;
+  width: 200px;
+  height: 25px;
+  background: lightblue;
+  border-radius: 20px 20px 0 0;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+
+
+}
+
+.slot1 {
+  position: fixed;
+  top: 193px;
+  right: 50px;
+  width: 200px;
+  height: 25px;
+  border-bottom: 3px solid rgba(190, 96, 28, .9);
+
+}
+
+
+.info-box {
+  position: fixed;
+  top: -30px;
+  right: 0px;
+  width: 300px;
+  height: 200px;
+  padding: 10px;
+  background: lightblue;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  margin-top: 10px;
+  display: none;
+  z-index: 100;
+
+
+}
+
+
+
+
+/*
+#customInputWrapper {
+  background: rgba(255, 255, 225, 0.2);         
+  border: 2px solid #333;    
+  border-radius: 10px;       
+  padding: 20px;             
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  backdrop-filter: blur(10px);
+}
+
+#customInputWrapper input {
+  padding: 5px 10px;
+  margin-right: 10px;
+}
+#customInputWrapper button {
+  padding: 5px 10px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: chocolate;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  width: 500px;
+  height: 250px;
+  text-align: center;
+  z-index: 1000;
+}
+
+
+.profile-pic img {
+  position: relative;
+  top: 15px;
+  left: -55px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid;
+  border-color: gold ;
+
+}
+
+.profile-info {
+  position: absolute;
+  top: 115px;
+  left: 15px;
+  background-color:grey;
+  display: flex ;
+  align-items: center;
+  width: auto;
+  color: #fff;
+  border: 2px solid;
+  border-color: #333;
+}
+
+.profile-info input {
+  color: white;
+  width: 100px;
+  font-size: 16px;
+  display: none; 
+  background: rgba(0,0,0, .1);
+  
+}
+
+.profile-info button {
+  left: 55px;
+  margin-left: 20px;
+  padding: 5px 5px;
+  border: none;
+  background: #333;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.profile-info button:hover {
+  background: #555;
+}
+
+.card{
+    background-color: rgb(221, 171, 106);
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 230px;
+    height: 230px;
+    border-radius: 12px;
+}
+
+.card2{
+    background-color: rgb(221, 171, 106);
+    position: absolute;
+    top: auto;
+    left: 250px;
+    width: 230px;
+    height: 230px;
+    border-radius: 12px;
+}
+
+.midr{
+  position: fixed;
+  top: 20px;
+  left: 233px;
+  width: 33px;
+  height: 15px;
+  border: 2px solid red;
+  border-bottom: none;       
+  border-radius: 200px 200px 0 0;
+}
+
+.midg{
+  position: fixed;
+  top: 40px;
+  left: 233px;
+  width: 33px;
+  height: 15px;
+  border: 2px solid rgb(21, 216, 31);
+  border-bottom: none;       
+  border-radius: 200px 200px 0 0;
+}
+
+.midb{
+  position: fixed;
+  top: 60px;
+  left: 233px;
+  width: 33px;
+  height: 15px;
+  border: 2px solid rgb(8, 94, 255);
+  border-bottom: none;       
+  border-radius: 200px 200px 0 0;
+}
+
+.midy{
+  position: fixed;
+  top: 80px;
+  left: 233px;
+  width: 33px;
+  height: 15px;
+  border: 2px solid rgb(255, 208, 0);
+  border-bottom: none;       
+  border-radius: 200px 200px 0 0;
+}
+
+.midr1{
+  position: fixed;
+  top: 100px;
+  left: 233px;
+  width: 33px;
+  height: 15px;
+  border: 2px solid red;
+  border-bottom: none;       
+  border-radius: 200px 200px 0 0;
+}
+
+.midg1{
+  position: fixed;
+  top: 120px;
+  left: 233px;
+  width: 33px;
+  height: 15px;
+  border: 2px solid rgb(21, 216, 31);
+  border-bottom: none;       
+  border-radius: 200px 200px 0 0;
+}
+
+.midb1{
+  position: fixed;
+  top: 140px;
+  left: 233px;
+  width: 33px;
+  height: 15px;
+  border: 2px solid rgb(8, 94, 255);
+  border-bottom: none;       
+  border-radius: 200px 200px 0 0;
+}
+
+.midy1{
+  position: fixed;
+  top: 160px;
+  left: 233px;
+  width: 33px;
+  height: 15px;
+  border: 2px solid rgb(255, 208, 0);
+  border-bottom: none;       
+  border-radius: 200px 200px 0 0;
+}
+
+.midr2{
+  position: fixed;
+  top: 180px;
+  left: 233px;
+  width: 33px;
+  height: 15px;
+  border: 2px solid red;
+  border-bottom: none;       
+  border-radius: 200px 200px 0 0;
+}
+
+.midg2{
+  position: fixed;
+  top: 200px;
+  left: 233px;
+  width: 33px;
+  height: 15px;
+  border: 2px solid rgb(21, 216, 31);
+  border-bottom: none;       
+  border-radius: 200px 200px 0 0;
+}
+
+.modal-content {
+  position: relative;
+}
+
+#closeModalBtn {
+  position: fixed;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  top: 5px;
+  right: 5px;
+  font-size: 24px;
+  background-color: rgb(27, 26, 26);
+  border-radius: 6px;
+  cursor: default;
+  transition: background 0.2s;
+}
+
+#closeModalBtn:hover {
+  background: #f00;
+}
+
+.box {
+  position: fixed;
+  top: 50px;
+  right: 24px;
+  width: 200px;
+  height: 25px;
+  background: lightblue;
+  border-radius: 20px 20px 0 0;
+  border-bottom: 3px solid rgba(190, 96, 28, .9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  
+}
+
+/* card
+.info-box {
+  position: fixed;
+  top: 20px;
+  left: 100px;
+  width: 300px;
+  height: 200px;
+  padding: 10px;
+  background: lightblue;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  margin-top: 10px;
+  display: none;
+  z-index: 100;
+
+
+} */
+
+.setting {
+  display: none;
+  position: fixed;
+  justify-content: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: chocolate;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  width: 300px;
+  height: 350px;
+  text-align: center;
+
+}
+
+#closeSettingBtn {
+  position: fixed;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  top: 4px;
+  right: 4px;
+  font-size: 24px;
+  background-color: rgb(27, 26, 26);
+  color: #fff;
+  border-radius: 6px;
+  cursor: default;
+  transition: background 0.2s;
+  z-index: 100;
+}
+
+#closeSettingBtn:hover {
+  background: #f00;
+}
+
+.lightBtn {
+  width: 250px;
+  height: 50px;
+  color: #ffffff;
+  background: #333;
+  border-radius: 6px;
+  border: coral;
+  transition: background 0.2s;
+}
+
+body.dark .lightBtn{
+  background: gold;
+  color: #333;
+  transition: background 0.2s;
+}
+
+body.dark .lightBtn:hover{
+  background: rgba(255, 215, 0, 0.8);
+}
+
+body.light .lightBtn:hover{
+  background: rgba(85, 85, 85, 0.8);
+}
+
+.contact {
+  display: none;
+  position: fixed;
+  justify-content: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: chocolate;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  width: 300px;
+  height: 350px;
+  text-align: center;
+
+}
+
+.ig {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  gap: 8px;
+  align-items: center;
+  background: rgb(245, 222, 179);
+  border: none;
+  width: 250px;
+  height: 50px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: default;
+}
+
+.ig:hover {
+  background: rgba(245, 222, 179, .9) ;
+}
+
+.ig p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #000;
+}
+
+#closeContactBtn {
+  position: fixed;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  top: 4px;
+  right: 4px;
+  font-size: 24px;
+  background-color: rgb(27, 26, 26);
+  color: #fff;
+  border-radius: 6px;
+  cursor: default;
+  transition: background 0.2s;
+  z-index: 100;
+}
+
+#closeContactBtn:hover {
+  background: #f00;
+}
+
+.tt {
+  display: flex;
+  position: fixed;
+  top: 80px;
+  justify-content: center;
+  gap: 8px;
+  align-items: center;
+  background: rgb(245, 222, 179);
+  border: none;
+  width: 250px;
+  height: 50px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: default;
+}
+
+.tt:hover {
+  background: rgba(245, 222, 179, .9) ;
+}
+
+.tt p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #000;
+}
+
+.wa {
+  display: flex;
+  position: fixed;
+  top: 136px;
+  justify-content: center;
+  gap: 8px;
+  align-items: center;
+  background: rgb(245, 222, 179);
+  border: none;
+  width: 250px;
+  height: 50px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: default;
+
+}
+
+.wa:hover {
+  background: rgba(245, 222, 179, .9) ;
+}
+
+.wa p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #000;
+  margin-right: 55px;
+
+}
+
+   </style>
+</head>
+
+<body>
+    <div class="top">
+</div>
+    <nav class="navbar">
+       <button onclick="toggleSidebar()" class="icons" id="icons">
+        <img id="iconImg"src="https://i.pinimg.com/originals/ec/03/db/ec03dbdeb40d70a2d11a428a15a3ef2e.jpg" width="60px";>
+       </button>
+       <div id="sidebar">
+        <h3 class="sidebar-title" id="dashboardName">Bluzzz</h3>
+<a href="#" id="profile"> <i class='bx bx-user'></i><span>Profile</span></a>
+<a href="#" id="setting"> <i class='bx bx-cog'></i><span>Settings</span></a>
+<a href="#" id="contact"> <i class='bx bx-phone'></i><span>Contact</span></a>
+ <a href="login.html" class="logout"> <i class='bx bx-log-out'></i><span>Logout</span></a>
+
+
+ <div id="profileModal" class="modal">
+    <div class="card"><div class="card2"></div>
+      <div class="midr"></div>
+      <div class="midg"></div>
+      <div class="midb"></div>
+      <div class="midy"></div>
+      <div class="midr1"></div>
+      <div class="midg1"></div>
+      <div class="midb1"></div>
+      <div class="midy1"></div>
+      <div class="midr2"></div>
+      <div class="midg2"></div>
+    <div class="profile-pic">
+      <img id="profileImg"src="https://i.pinimg.com/originals/ec/03/db/ec03dbdeb40d70a2d11a428a15a3ef2e.jpg" alt="Profile Picture">
+    </div>
+    <div class="img">
+      <img id="mainImg"src="https://i.pinimg.com/736x/63/92/24/639224f094deff2ebf9cd261fba24004.jpg" width="100px" height="130px">
+    </div>
+    <div class="box" id="box"></div>
+    <div id="slot1" class="slot1"></div>
+ <div class="info-box" id="infoBox"></div>
+ <p id="id" class="id">ID: 461117788</p>
+ <button onclick="copyText()" class="copy-btn">
+  <i class='bx bx-copy'></i>
+ </button>
+ <div id="notif">Copied!</div>
+
+    <div class="profile-info">
+      <span id="closeModalBtn">&times;</span>
+      <span id="profileName" style="margin-left: 5px;">My Dashboard</span>
+      <button id="editNameBtn">✏️</button>
+       <input type="text" id="profileNameInput" style="display:none;">
+      <button id="saveNameBtn" style="display: none;">Confirm</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<div id="settingModal" class="setting">
+  <span id="closeSettingBtn">&times;</span>
+
+  <button onclick="toggleTheme('light')"  id="themeBtn" class="lightBtn">☀️ Light Mode</button>
+</div>
+
+<div id="contactModal" class="contact">
+  <span id="closeContactBtn">&times;</span>
+  <button class="ig">
+    <p><img src="https://static.vecteezy.com/system/resources/previews/024/170/870/original/instagram-icon-logo-symbol-free-png.png" width="20px" height="20px">@hydrobluzzz</p>
+  </button>
+
+  <button class="tt">
+    <p><img src="https://th.bing.com/th/id/OIP._oOHOye6mtd4XXtXS40h0AHaHk?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3" width="20px" height="20px">@pyroobluzzz</p>
+  </button>
+
+  <button class="wa">
+    <p><img src="https://clipart.info/images/ccovers/1499955335whatsapp-icon-logo-png.png" width="20px" height="20px">Admin</p>
+  </button>
+</div>
+
+
+    </nav>
+
+    <main>
+        <div class="content">
+
+    </main>
+
+    <script>
+function copyText() {
+  const teks = document.getElementById("id").innerText;
+  const notif = document.getElementById("notif");
+
+  navigator.clipboard.writeText(teks).then(() => {
+    notif.classList.add("show");
+    setTimeout(() => {
+      notif.classList.remove("show");
+    }, 1500);
+
+  })
+}
+</script>
+
+    <script>
+function toggleSidebar() {
+  document.getElementById("sidebar").classList.toggle("active");
+}
+</script>
+
+<script>
+  const sidebarTitle = document.querySelector('.sidebar-title');
+const icons = document.getElementById("icons");
+const profileMenu = document.getElementById('profile');
+const settingMenu = document.getElementById('setting');
+const contactMenu = document.getElementById('contact');
+
+const profileModal = document.getElementById('profileModal');
+const profileName = document.getElementById('profileName');
+const editNameBtn = document.getElementById('editNameBtn');
+const profileNameInput = document.getElementById('profileNameInput');
+const saveNameBtn = document.getElementById('saveNameBtn');
+const closeModalBtn = document.getElementById('closeModalBtn');
+const box = document.getElementById('box');
+const infoBox = document.getElementById('infoBox');
+const slot1 = document.getElementById('slot1');
+
+const settingModal = document.getElementById('settingModal');
+const closeSettingBtn = document.getElementById('closeSettingBtn');
+
+const contactModal = document.getElementById('contactModal');
+const igButton = document.querySelector('.ig');
+const ttButton = document.querySelector('.tt');
+const waButton = document.querySelector('.wa');
+const closeContactBtn = document.getElementById('closeContactBtn');
+
+
+// klik Profile → tampilkan modal
+profileMenu.addEventListener('click', () => {
+  profileName.textContent = sidebarTitle.textContent; // isi default
+  profileModal.style.display = 'flex';
+});
+
+// klik tombol edit → tampilkan input inline
+editNameBtn.addEventListener('click', () => {
+  profileNameInput.value = profileName.textContent;
+  profileName.style.display = 'none';
+  editNameBtn.style.display = 'none';
+  profileNameInput.style.display = 'inline-block';
+  saveNameBtn.style.display = 'inline-block';
+  profileNameInput.focus();
+});
+
+saveNameBtn.addEventListener('click', () => {
+  const newName = profileNameInput.value.trim();
+  if(newName !== "") {
+    profileName.textContent = newName;
+    sidebarTitle.textContent = newName; // update sidebar title
+  }
+  profileName.style.display = 'inline';
+  editNameBtn.style.display = 'inline-block';
+  profileNameInput.style.display = 'none';
+  saveNameBtn.style.display = 'none';
+});
+
+box.addEventListener('click', () => {
+    infoBox.style.display = 'block';
+    box.style.display = 'none';
+  });
+
+
+
+slot1.addEventListener('click', () => {
+  infoBox.style.display = 'none';
+  box.style.display = 'block';
+
+
+})
+
+icons.addEventListener("click", () => {
+  icons.classList.toggle("shift-right");
+})
+
+// close button
+closeModalBtn.addEventListener('click', () => {
+  profileModal.style.display = 'none';
+
+  // reset tampilan
+  profileName.style.display = 'inline';
+  editNameBtn.style.display = 'inline-block';
+  profileNameInput.style.display = 'none';
+  saveNameBtn.style.display = 'none';
+});
+
+settingMenu.addEventListener('click', () => {
+  settingModal.style.display = 'flex';
+})
+
+closeSettingBtn.addEventListener('click', () => {
+  settingModal.style.display = 'none';
+})
+
+contactMenu.addEventListener('click', () => {
+  contactModal.style.display = 'flex';
+});
+
+closeContactBtn.addEventListener('click', () => {
+  contactModal.style.display = 'none';
+});
+
+igButton.addEventListener('click', () => {
+  window.open('https://www.instagram.com/hydrobluzzz/');
+
+});
+
+ttButton.addEventListener('click', () => {
+  window.open('https://www.tiktok.com/@pyroobluzzz');
+
+});
+
+waButton.addEventListener('click', () => {
+  window.open('https://wa.me/6285714991043');
+
+});
+
+  </script>
+
+  <script>
+function toggleTheme() {
+  const btn = document.getElementById("themeBtn");
+
+  if (document.body.classList.contains("dark")) {
+    document.body.classList.remove("dark");
+    document.body.classList.add("light");
+    localStorage.setItem("theme", "light");
+    btn.innerText = "Dark Mode";
+  } else {
+    document.body.classList.remove("light");
+    document.body.classList.add("dark");
+    localStorage.setItem("theme", "dark");
+    btn.innerText = "Light Mode";
+  }
+}
+</script>
+
+  <script>
+function setTheme(mode) {
+  document.body.classList.remove("dark", "light");
+  document.body.classList.add(mode);
+  localStorage.setItem("theme", mode);
+
+  const btn = document.getElementById("themeBtn");
+
+  if (mode === "dark") {
+    btn.innerText = "Light Mode";
+  } else {
+    btn.innerText = "Dark Mode";
+  }
+}
+
+const savedTheme = localStorage.getItem("theme") || "light";
+setTheme(savedTheme);
+</script>
+
+
+</body>
+</html>
